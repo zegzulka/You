@@ -1,14 +1,18 @@
-<!-- Adjustable parameters -->
-<script>
-    // Video adjustment parameters
-    let VIDEO_BLUR = 30;        // Blur amount in pixels
-    let VIDEO_CONTRAST = 1.3;     // 1.0 is normal, >1 increases contrast, <1 decreases contrast
-    let VIDEO_SATURATION = 0.9;   // 1.0 is normal, >1 increases saturation, <1 decreases saturation
-    let VIDEO_OPACITY = 0.9;      // 1.0 is fully opaque, 0 is transparent
-</script>
+// Video adjustment parameters
+const VIDEO_BLUR = 30;
+const VIDEO_CONTRAST = 1.3;
+const VIDEO_SATURATION = 0.9;
+const VIDEO_OPACITY = 0.9;
 
-<div id="outer-container" style="width: 523px; height: 380px; background: #000; position: relative; overflow: hidden;">
-    <canvas id="output-canvas" style="
+function initializeCamera(containerId) {
+    // Create container and canvas
+    const container = document.createElement('div');
+    container.id = 'outer-container';
+    container.style.cssText = `width: 523px; height: 380px; background: #000; position: relative; overflow: hidden;`;
+
+    const canvas = document.createElement('canvas');
+    canvas.id = 'output-canvas';
+    canvas.style.cssText = `
         width: 406px; 
         height: 270px;
         position: absolute;
@@ -18,13 +22,11 @@
         filter: blur(${VIDEO_BLUR}px) contrast(${VIDEO_CONTRAST}) saturate(${VIDEO_SATURATION});
         opacity: ${VIDEO_OPACITY};
         transform: scaleX(-1);
-    "></canvas>
-</div>
+    `;
+    
+    container.appendChild(canvas);
+    document.getElementById(containerId).appendChild(container);
 
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation"></script>
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils"></script>
-
-<script>
     let ctx;
     let videoElement;
     let selfieSegmentation;
@@ -132,4 +134,7 @@
 
     // Initialize everything
     initSegmentation();
-</script>
+}
+
+// Export the function
+window.initializeCamera = initializeCamera;
