@@ -2,7 +2,7 @@
 const VIDEO_BLUR = 30;
 const VIDEO_CONTRAST = 1.3;
 const VIDEO_SATURATION = 0.9;
-const VIDEO_OPACITY = 0.9;
+const VIDEO_OPACITY = 0.95;
 
 function initializeCamera(containerId) {
   const PLACEHOLDER_SCALE = 1;
@@ -23,7 +23,7 @@ function initializeCamera(containerId) {
     z-index: 2;
     transform: scale(${PLACEHOLDER_SCALE});
     transition: opacity 0.3s ease;
-    opacity: 1;
+    opacity: 0.95;
   `;
   placeholderImg.id = "camera-placeholder";
   container.appendChild(placeholderImg);
