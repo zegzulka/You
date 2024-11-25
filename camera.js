@@ -5,7 +5,7 @@ const VIDEO_SATURATION = 0.9;
 const VIDEO_OPACITY = 0.9;
 
 function initializeCamera(containerId) {
-  const PLACEHOLDER_SCALE = 0.4;
+  const PLACEHOLDER_SCALE = 1;
   const container = document.createElement("div");
   container.id = "outer-container";
   container.style.cssText = `width: 523px; height: 380px; background: #000; position: relative; overflow: hidden;`;
@@ -14,7 +14,7 @@ function initializeCamera(containerId) {
   // Add placeholder image
   const placeholderImg = document.createElement("img");
   placeholderImg.src =
-    "https://framerusercontent.com/images/odtYwGTAoFOmia7Bq2V696ASd8k.png";
+    "https://framerusercontent.com/images/HNm7thqoI4ZL7nVploayqybotXg.png";
   placeholderImg.style.cssText = `
   width: 100%;
   height: 100%;
