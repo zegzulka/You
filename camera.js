@@ -2,7 +2,7 @@
 const VIDEO_BLUR = 30;
 const VIDEO_CONTRAST = 1.3;
 const VIDEO_SATURATION = 0.9;
-const VIDEO_OPACITY = 0.95;
+const VIDEO_OPACITY = 1;
 
 function initializeCamera(containerId) {
   const PLACEHOLDER_SCALE = 1;
