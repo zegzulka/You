@@ -1,0 +1,34 @@
+<script>
+// First add the required scripts
+const script1 = document.createElement('script');
+script1.src = 'https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation';
+document.head.appendChild(script1);
+
+const script2 = document.createElement('script');
+script2.src = 'https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils';
+document.head.appendChild(script2);
+
+// Create a container for the camera
+const cameraContainer = document.createElement('div');
+cameraContainer.id = 'camera-container';
+document.body.appendChild(cameraContainer);
+
+// Wait for MediaPipe scripts to load
+script2.onload = () => {
+    // Now load the camera script
+    const cameraScript = document.createElement('script');
+    cameraScript.src = 'https://zegzulka.github.io/You/camera.js';
+    
+    cameraScript.onload = () => {
+        console.log('✅ Camera script loaded successfully');
+        // Initialize the camera with our container ID
+        window.initializeCamera('camera-container');
+    };
+    
+    cameraScript.onerror = (error) => {
+        console.error('❌ Error loading camera script:', error);
+    };
+
+    document.head.appendChild(cameraScript);
+};
+</script>
