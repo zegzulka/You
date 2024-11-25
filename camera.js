@@ -41,7 +41,7 @@ function initializeCamera(containerId) {
     opacity: 0;
     transform: scaleX(-1);
     z-index: 1;
-    transition: opacity 3s ease;
+    transition: opacity 0.4s ease;
   `;
 
   container.appendChild(canvas);
