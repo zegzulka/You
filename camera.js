@@ -22,7 +22,8 @@ function initializeCamera(containerId) {
     left: 0;
     z-index: 2;
     transform: scale(${PLACEHOLDER_SCALE});
-    transition: opacity 0.3s ease; // Add smooth transition
+    transition: opacity 0.3s ease;
+    opacity: 1;
   `;
   placeholderImg.id = "camera-placeholder";
   container.appendChild(placeholderImg);
@@ -30,17 +31,18 @@ function initializeCamera(containerId) {
   const canvas = document.createElement("canvas");
   canvas.id = "output-canvas";
   canvas.style.cssText = `
-        width: 406px; 
-        height: 270px;
-        position: absolute;
-        left: 58.5px;
-        top: 55px;
-        border-radius: 133.5px;
-        filter: blur(${VIDEO_BLUR}px) contrast(${VIDEO_CONTRAST}) saturate(${VIDEO_SATURATION});
-        opacity: ${VIDEO_OPACITY};
-        transform: scaleX(-1);
-        z-index: 1;
-    `;
+    width: 406px; 
+    height: 270px;
+    position: absolute;
+    left: 58.5px;
+    top: 55px;
+    border-radius: 133.5px;
+    filter: blur(${VIDEO_BLUR}px) contrast(${VIDEO_CONTRAST}) saturate(${VIDEO_SATURATION});
+    opacity: 0;
+    transform: scaleX(-1);
+    z-index: 1;
+    transition: opacity 0.3s ease;
+  `;
 
   container.appendChild(canvas);
   document.getElementById(containerId).appendChild(container);
@@ -50,6 +52,7 @@ function initializeCamera(containerId) {
   let selfieSegmentation;
   let tempCanvas;
   let isFirstFrame = true;
+  let transitionStarted = false;
 
   async function setupCamera() {
     const video = document.createElement("video");
@@ -76,9 +79,6 @@ function initializeCamera(containerId) {
       canvas.width = 406;
       canvas.height = 270;
       ctx = canvas.getContext("2d", { willReadFrequently: true });
-
-      canvas.style.filter = `blur(${VIDEO_BLUR}px) contrast(${VIDEO_CONTRAST}) saturate(${VIDEO_SATURATION})`;
-      canvas.style.opacity = VIDEO_OPACITY;
 
       tempCanvas = document.createElement("canvas");
       tempCanvas.width = 406;
@@ -153,15 +153,29 @@ function initializeCamera(containerId) {
     ctx.putImageData(imageData, 0, 0);
     ctx.restore();
 
-    // Hide placeholder only after first successful segmentation frame
-    if (isFirstFrame) {
+    // Start transition after first successful frame
+    if (isFirstFrame && !transitionStarted) {
+      transitionStarted = true;
+      const canvas = document.getElementById("output-canvas");
       const placeholder = document.getElementById("camera-placeholder");
-      if (placeholder) {
+
+      // Ensure canvas is visible but fully transparent
+      canvas.style.opacity = "0";
+      canvas.style.display = "block";
+
+      // Start crossfade
+      requestAnimationFrame(() => {
+        // Fade in canvas
+        canvas.style.opacity = VIDEO_OPACITY;
+        // Fade out placeholder
         placeholder.style.opacity = "0";
+
+        // Remove placeholder after transition
         setTimeout(() => {
-          placeholder.style.display = "none";
-        }, 300); // Wait for fade out animation
-      }
+          placeholder.remove();
+        }, 300); // Match transition duration
+      });
+
       isFirstFrame = false;
     }
   }
