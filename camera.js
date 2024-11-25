@@ -14,7 +14,7 @@ function initializeCamera(containerId) {
   // Add placeholder image
   const placeholderImg = document.createElement("img");
   placeholderImg.src =
-    "https://framerusercontent.com/images/HNm7thqoI4ZL7nVploayqybotXg.png";
+    "https://framerusercontent.com/images/OJOmP4R6GPP4plCdnFFP6lIyrH8.png";
   placeholderImg.style.cssText = `
   width: 100%;
   height: 100%;
