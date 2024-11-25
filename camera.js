@@ -5,12 +5,12 @@ const VIDEO_SATURATION = 0.9;
 const VIDEO_OPACITY = 0.9;
 
 function initializeCamera(containerId) {
-  // Create container and canvas
-  // Create container and canvas
+  const PLACEHOLDER_SCALE = 0.8;
   const container = document.createElement("div");
   container.id = "outer-container";
   container.style.cssText = `width: 523px; height: 380px; background: #000; position: relative; overflow: hidden;`;
 
+  // Add placeholder image
   // Add placeholder image
   const placeholderImg = document.createElement("img");
   placeholderImg.src =
@@ -22,6 +22,7 @@ function initializeCamera(containerId) {
   top: 0;
   left: 0;
   z-index: 2; // Ensure it covers the canvas initially
+  transform: scale(${PLACEHOLDER_SCALE}); // Apply scale transformation
 `;
   placeholderImg.id = "camera-placeholder";
   container.appendChild(placeholderImg);
