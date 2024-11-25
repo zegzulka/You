@@ -22,7 +22,7 @@ function initializeCamera(containerId) {
     left: 0;
     z-index: 2;
     transform: scale(${PLACEHOLDER_SCALE});
-    transition: opacity 0.6s ease;
+    transition: opacity 3s ease;
     opacity: 0.95;
   `;
   placeholderImg.id = "camera-placeholder";
@@ -41,7 +41,7 @@ function initializeCamera(containerId) {
     opacity: 0;
     transform: scaleX(-1);
     z-index: 1;
-    transition: opacity 0.6s ease;
+    transition: opacity 3s ease;
   `;
 
   container.appendChild(canvas);
