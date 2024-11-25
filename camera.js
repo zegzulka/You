@@ -5,7 +5,7 @@ const VIDEO_SATURATION = 0.9;
 const VIDEO_OPACITY = 0.9;
 
 function initializeCamera(containerId) {
-  const PLACEHOLDER_SCALE = 0.8;
+  const PLACEHOLDER_SCALE = 0.4;
   const container = document.createElement("div");
   container.id = "outer-container";
   container.style.cssText = `width: 523px; height: 380px; background: #000; position: relative; overflow: hidden;`;
