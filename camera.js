@@ -22,7 +22,7 @@ function initializeCamera(containerId) {
     left: 0;
     z-index: 2;
     transform: scale(${PLACEHOLDER_SCALE});
-    transition: opacity 3s ease;
+    transition: opacity 2s ease;
     opacity: 0.95;
   `;
   placeholderImg.id = "camera-placeholder";
@@ -41,7 +41,7 @@ function initializeCamera(containerId) {
     opacity: 0;
     transform: scaleX(-1);
     z-index: 1;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.6s ease;
   `;
 
   container.appendChild(canvas);
@@ -173,7 +173,7 @@ function initializeCamera(containerId) {
         // Remove placeholder after transition
         setTimeout(() => {
           placeholder.remove();
-        }, 300); // Match transition duration
+        }, 2000); // Match transition duration
       });
 
       isFirstFrame = false;
